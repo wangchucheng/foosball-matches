@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/matchFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_sports_soccer_24"
+        android:title="@string/menu_match_text" />
+    <item
+        android:id="@+id/rankingFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_military_tech_24"
+        android:title="@string/menu_ranking_text" />
+</menu>

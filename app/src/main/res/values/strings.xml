@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Foosball Matches</string>
+    <string name="menu_match_text">Matches</string>
+    <string name="menu_ranking_text">Rankings</string>
+    <string name="vs_text">vs.</string>
+    <string name="score_divider">:</string>
+    <string name="soccer_icon_description">soccer icon</string>
+    <string name="new_fab_text">New</string>
+    <string name="new_fab_description">add a new match</string>
+    <string name="player_name_label">Name</string>
+    <string name="player_score_label">Score</string>
+    <string name="first_player_headline">Player 1</string>
+    <string name="first_player_name_hint">Name of player 1</string>
+    <string name="first_player_score_hint">Score of player 1</string>
+    <string name="second_player_headline">Player 2</string>
+    <string name="second_player_name_hint">Name of player 2</string>
+    <string name="second_player_score_hint">Score of player 2</string>
+    <string name="save_button_text">Save</string>
+    <string name="save_button_description">save the current match</string>
+    <string name="delete_button_text">Delete</string>
+    <string name="delete_button_description">delete the current match</string>
+    <string name="add_a_match_title">Add a Match</string>
+    <string name="update_a_match_title">Update a Match</string>
+    <string name="person_icon_description">person icon</string>
+    <string name="ranking_divider">|</string>
+    <string name="number_of_games">Games: %s</string>
+    <string name="number_of_wins">Wins: %s</string>
+    <string name="chip_label_text">Order by: </string>
+    <string name="game_chip_text">Games</string>
+    <string name="win_chip_text">Wins</string>
+    <string name="sharing_not_available">Sharing text is not available</string>
+    <string name="share_fab_text">Share</string>
+    <string name="share_fab_description">share a new match</string>
+</resources>
