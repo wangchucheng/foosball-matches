@@ -3,13 +3,16 @@ package com.wangchucheng.demos.foosballmatches.db
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 /**
  * [FoosballRepository] is the data source for [FoosballDatabase] containing available operations.
  *
- * @property foosballDatabaseDao
  */
-class FoosballRepository(private val foosballDatabaseDao: FoosballDatabaseDao) {
+class FoosballRepository @Inject constructor() {
+
+    @Inject
+    lateinit var foosballDatabaseDao: FoosballDatabaseDao
 
     /**
      * Insert a [MatchWithScores] object into database.

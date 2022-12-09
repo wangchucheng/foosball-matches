@@ -1,23 +1,36 @@
 package com.wangchucheng.demos.foosballmatches.ui.match
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.wangchucheng.demos.foosballmatches.MyApplication
 import com.wangchucheng.demos.foosballmatches.R
 import com.wangchucheng.demos.foosballmatches.databinding.FragmentMatchBinding
-import com.wangchucheng.demos.foosballmatches.db.FoosballDatabase
-import com.wangchucheng.demos.foosballmatches.db.FoosballRepository
+import javax.inject.Inject
 
 /**
  * [MatchFragment] is the fragment to show all available matches in a recycler view.
  *
  */
 class MatchFragment : Fragment() {
+
+    @Inject
+    lateinit var matchViewModelFactory: MatchViewModelFactory
+
+    private val matchViewModel by viewModels<MatchViewModel> { matchViewModelFactory }
+
+    // Inject in onAttach
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity?.application as MyApplication).appComponent.inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,15 +38,6 @@ class MatchFragment : Fragment() {
         // Inflate binding object
         val binding: FragmentMatchBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_match, container, false)
-
-        // Init repository and view model. Will use dagger for DI in another branch.
-        val foosballDatabaseDao =
-            FoosballDatabase.getInstance(requireActivity().application).foosballDatabaseDao
-        val foosballRepository = FoosballRepository(foosballDatabaseDao = foosballDatabaseDao)
-
-        val matchViewModelFactory = MatchViewModelFactory(foosballRepository = foosballRepository)
-        val matchViewModel =
-            ViewModelProvider(this, matchViewModelFactory)[MatchViewModel::class.java]
 
         // Init recycler view adapter and add data to it
         val adapter = MatchListAdapter(MatchItemClickListener {

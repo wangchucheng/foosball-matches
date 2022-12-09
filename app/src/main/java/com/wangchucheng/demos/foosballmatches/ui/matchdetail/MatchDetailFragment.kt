@@ -1,5 +1,6 @@
 package com.wangchucheng.demos.foosballmatches.ui.matchdetail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +9,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.wangchucheng.demos.foosballmatches.MyApplication
 import com.wangchucheng.demos.foosballmatches.R
 import com.wangchucheng.demos.foosballmatches.databinding.FragmentMatchDetailBinding
-import com.wangchucheng.demos.foosballmatches.db.FoosballDatabase
-import com.wangchucheng.demos.foosballmatches.db.FoosballRepository
+import javax.inject.Inject
 
 
 /**
@@ -22,22 +23,25 @@ import com.wangchucheng.demos.foosballmatches.db.FoosballRepository
  */
 class MatchDetailFragment : Fragment() {
 
+    @Inject
+    lateinit var matchDetailViewModelFactory: MatchDetailViewModelFactory
+
+    private val matchDetailViewModel: MatchDetailViewModel by viewModels {
+        matchDetailViewModelFactory
+    }
+
+    // Inject in onAttach
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity?.application as MyApplication).appComponent.inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate binding
         val binding: FragmentMatchDetailBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_match_detail, container, false)
-
-        // Init repository and view model. Will use dagger for DI in another branch.
-        val foosballDatabaseDao =
-            FoosballDatabase.getInstance(requireActivity().application).foosballDatabaseDao
-        val foosballRepository = FoosballRepository(foosballDatabaseDao = foosballDatabaseDao)
-
-        val matchDetailViewModelFactory =
-            MatchDetailViewModelFactory(foosballRepository = foosballRepository)
-        val matchDetailViewModel =
-            ViewModelProvider(this, matchDetailViewModelFactory)[MatchDetailViewModel::class.java]
 
         // set data binding value
         binding.lifecycleOwner = viewLifecycleOwner

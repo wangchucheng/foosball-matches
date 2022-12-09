@@ -1,6 +1,7 @@
 package com.wangchucheng.demos.foosballmatches.ui.ranking
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,17 +10,28 @@ import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.wangchucheng.demos.foosballmatches.MyApplication
 import com.wangchucheng.demos.foosballmatches.R
 import com.wangchucheng.demos.foosballmatches.databinding.FragmentRankingBinding
-import com.wangchucheng.demos.foosballmatches.db.FoosballDatabase
-import com.wangchucheng.demos.foosballmatches.db.FoosballRepository
+import javax.inject.Inject
 
 /**
  * [RankingFragment] is the fragment to show all available rankings in recycler view.
  *
  */
 class RankingFragment : Fragment() {
+
+    @Inject
+    lateinit var rankingViewModelFactory: RankingViewModelFactory
+
+    private val rankingViewModel by viewModels<RankingViewModel> { rankingViewModelFactory }
+
+    // Inject in onAttach
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity?.application as MyApplication).appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,16 +40,6 @@ class RankingFragment : Fragment() {
         // Inflate binding
         val binding: FragmentRankingBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_ranking, container, false)
-
-        // Init repository and view model. Will use dagger for DI in another branch.
-        val foosballDatabaseDao =
-            FoosballDatabase.getInstance(requireActivity().application).foosballDatabaseDao
-        val foosballRepository = FoosballRepository(foosballDatabaseDao = foosballDatabaseDao)
-
-        val rankingViewModelFactory =
-            RankingViewModelFactory(foosballRepository = foosballRepository)
-        val rankingViewModel =
-            ViewModelProvider(this, rankingViewModelFactory)[RankingViewModel::class.java]
 
         // set data binding value
         binding.lifecycleOwner = viewLifecycleOwner
@@ -49,7 +51,6 @@ class RankingFragment : Fragment() {
 
         rankingViewModel.mediator.observe(viewLifecycleOwner) {
             it?.let {
-                println("wcctest: $it")
                 adapter.submitList(it)
             }
         }
