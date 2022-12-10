@@ -65,37 +65,35 @@ class MatchDetailViewModel(
         }
 
         // Save or update match information
-        viewModelScope.launch {
-            val matchWithScores = MatchWithScores(
-                match = Match(), scores = listOf(
-                    firstPlayerScore.value?.toScore()!!,
-                    secondPlayerScore.value?.toScore()!!
-                )
+        val matchWithScores = MatchWithScores(
+            match = Match(), scores = listOf(
+                firstPlayerScore.value?.toScore()!!,
+                secondPlayerScore.value?.toScore()!!
             )
+        )
 
-            if (matchWithScores.scores[0].score > matchWithScores.scores[1].score) {
-                matchWithScores.scores[0].isWinner = true
-                matchWithScores.scores[1].isWinner = false
-            } else if (matchWithScores.scores[0].score < matchWithScores.scores[1].score) {
-                matchWithScores.scores[0].isWinner = false
-                matchWithScores.scores[1].isWinner = true
-            } else {
-                matchWithScores.scores[0].isWinner = false
-                matchWithScores.scores[1].isWinner = false
-            }
-
-            originalMatch?.let {
-                matchWithScores.match.id = it.match.id
-                matchWithScores.scores[0].id = it.scores[0].id
-                matchWithScores.scores[1].id = it.scores[1].id
-                foosballRepository.update(matchWithScores = matchWithScores)
-            } ?: run {
-                foosballRepository.insert(
-                    matchWithScores = matchWithScores
-                )
-            }
-            _shouldNavigate.value = true
+        if (matchWithScores.scores[0].score > matchWithScores.scores[1].score) {
+            matchWithScores.scores[0].isWinner = true
+            matchWithScores.scores[1].isWinner = false
+        } else if (matchWithScores.scores[0].score < matchWithScores.scores[1].score) {
+            matchWithScores.scores[0].isWinner = false
+            matchWithScores.scores[1].isWinner = true
+        } else {
+            matchWithScores.scores[0].isWinner = false
+            matchWithScores.scores[1].isWinner = false
         }
+
+        originalMatch?.let {
+            matchWithScores.match.id = it.match.id
+            matchWithScores.scores[0].id = it.scores[0].id
+            matchWithScores.scores[1].id = it.scores[1].id
+            foosballRepository.update(matchWithScores = matchWithScores)
+        } ?: run {
+            foosballRepository.insert(
+                matchWithScores = matchWithScores
+            )
+        }
+        _shouldNavigate.value = true
     }
 
     /**

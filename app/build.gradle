@@ -66,4 +66,9 @@ dependencies {
     // dagger
     implementation "com.google.dagger:dagger:${rootProject.ext.dagger_version}"
     kapt "com.google.dagger:dagger-compiler:${rootProject.ext.dagger_version}"
+
+    // rxjava
+    implementation "io.reactivex.rxjava3:rxjava:${rootProject.ext.rxjava_version}"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
 }

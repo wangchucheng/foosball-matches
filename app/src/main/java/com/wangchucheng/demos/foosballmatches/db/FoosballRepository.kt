@@ -1,6 +1,7 @@
 package com.wangchucheng.demos.foosballmatches.db
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.LiveDataReactiveStreams
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -21,10 +22,8 @@ class FoosballRepository @Inject constructor() {
      *
      * @param matchWithScores
      */
-    suspend fun insert(matchWithScores: MatchWithScores) {
-        withContext(Dispatchers.IO) {
-            foosballDatabaseDao.insert(matchWithScores = matchWithScores)
-        }
+    fun insert(matchWithScores: MatchWithScores) {
+        foosballDatabaseDao.insert(matchWithScores = matchWithScores)
     }
 
     /**
@@ -34,10 +33,8 @@ class FoosballRepository @Inject constructor() {
      *
      * @param matchWithScores
      */
-    suspend fun update(matchWithScores: MatchWithScores) {
-        withContext(Dispatchers.IO) {
-            foosballDatabaseDao.update(matchWithScores = matchWithScores)
-        }
+    fun update(matchWithScores: MatchWithScores) {
+        foosballDatabaseDao.update(matchWithScores = matchWithScores)
     }
 
 
@@ -62,7 +59,7 @@ class FoosballRepository @Inject constructor() {
      * @return all matches with scores in LiveData
      */
     fun getAllMatchesWithScores(): LiveData<List<MatchWithScores>> =
-        foosballDatabaseDao.getAllMatchesWithScores()
+        LiveDataReactiveStreams.fromPublisher(foosballDatabaseDao.getAllMatchesWithScores())
 
     /**
      * Get all rankings in a livedata object.
@@ -71,5 +68,6 @@ class FoosballRepository @Inject constructor() {
      *
      * @return all rankings in LiveData
      */
-    fun getAllRankings(): LiveData<List<Ranking>> = foosballDatabaseDao.getAllRankings()
+    fun getAllRankings(): LiveData<List<Ranking>> =
+        LiveDataReactiveStreams.fromPublisher(foosballDatabaseDao.getAllRankings())
 }
