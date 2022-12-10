@@ -23,8 +23,12 @@ class MatchDetailViewModel(
     val secondPlayerScore = MutableLiveData<ScoreDTO>()
 
     // Event to indicate if all edit text has eligible values
-    private val _hasError = MutableLiveData<Boolean>()
-    val hasError: LiveData<Boolean> get() = _hasError
+    private val _hasBlankError = MutableLiveData<Boolean>()
+    val hasBlankError: LiveData<Boolean> get() = _hasBlankError
+
+    // Event to indicate if all numbers are valid
+    private val _hasNumberError = MutableLiveData<Boolean>()
+    val hasNumberError: LiveData<Boolean> get() = _hasNumberError
 
     // Event to indicate if ui should be navigated to a new destination
     private val _shouldNavigate = MutableLiveData<Boolean>()
@@ -60,7 +64,14 @@ class MatchDetailViewModel(
             || secondPlayerScore.value?.player.isNullOrBlank()
             || secondPlayerScore.value?.score.isNullOrBlank()
         ) {
-            _hasError.value = true
+            _hasBlankError.value = true
+            return
+        }
+
+        if (firstPlayerScore.value?.score?.toIntOrNull() == null
+            || secondPlayerScore.value?.score?.toIntOrNull() == null
+        ) {
+            _hasNumberError.value = true
             return
         }
 
@@ -117,12 +128,13 @@ class MatchDetailViewModel(
     /**
      * Showing error operation is finished.
      *
-     * Reset the [hasError] event so it will not be called again in orientation changes or other
+     * Reset the [hasBlankError] event so it will not be called again in orientation changes or other
      * cases.
      *
      */
     fun doneShowingError() {
-        _hasError.value = false
+        _hasBlankError.value = false
+        _hasNumberError.value = false
     }
 
     /**

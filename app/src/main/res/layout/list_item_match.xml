@@ -14,97 +14,121 @@
             type="com.wangchucheng.demos.foosballmatches.ui.match.MatchItemClickListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <com.google.android.material.card.MaterialCardView
+        style="?attr/materialCardViewFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
         android:onClick="@{() -> clickListener.onClick(matchWithScores)}">
 
-        <ImageView
-            android:id="@+id/soccer_icon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="@string/soccer_icon_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_sports_soccer_24"
-            app:tint="?attr/colorOnSurfaceVariant" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/first_player_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@{matchWithScores.scores.get(0).player}"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/soccer_icon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="John" />
+            <ImageView
+                android:id="@+id/soccer_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/soccer_icon_description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_sports_soccer_24"
+                app:tint="?attr/colorOnSurfaceVariant" />
 
-        <TextView
-            android:id="@+id/vs_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/vs_text"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            app:layout_constraintBaseline_toBaselineOf="@+id/first_player_name"
-            app:layout_constraintStart_toEndOf="@+id/first_player_name" />
+            <TextView
+                android:id="@+id/first_player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:maxLength="12"
+                android:text="@{matchWithScores.scores.get(0).player}"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/soccer_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Johnsfsfdsfdsfsdfdsfdsfsdfsdfsdfxxx" />
 
-        <TextView
-            android:id="@+id/second_player_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="24dp"
-            android:text="@{matchWithScores.scores.get(1).player}"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            app:layout_constraintBaseline_toBaselineOf="@+id/vs_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/vs_text"
-            tools:text="Amy" />
+            <TextView
+                android:id="@+id/vs_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/vs_text"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                app:layout_constraintBaseline_toBaselineOf="@+id/first_player_name"
+                app:layout_constraintStart_toEndOf="@+id/first_player_name" />
 
-        <TextView
-            android:id="@+id/number_of_games"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="@{`` + matchWithScores.scores.get(0).score}"
-            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/soccer_icon"
-            app:layout_constraintTop_toBottomOf="@+id/first_player_name"
-            tools:text="10" />
+            <TextView
+                android:id="@+id/second_player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:maxLength="12"
+                android:text="@{matchWithScores.scores.get(1).player}"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                app:layout_constraintBaseline_toBaselineOf="@+id/vs_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/vs_text"
+                tools:text="Amysdfdfsdfsdfd" />
 
-        <TextView
-            android:id="@+id/score_divider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:text="@string/score_divider"
-            app:layout_constraintBaseline_toBaselineOf="@+id/number_of_games"
-            app:layout_constraintStart_toEndOf="@+id/number_of_games" />
+            <TextView
+                android:id="@+id/score_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/score_label_text"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/soccer_icon"
+                app:layout_constraintTop_toBottomOf="@+id/first_player_name" />
 
-        <TextView
-            android:id="@+id/number_of_wins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="24dp"
-            android:text="@{`` + matchWithScores.scores.get(1).score}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/score_divider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/score_divider"
-            tools:text="10" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/number_of_games"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{`` + matchWithScores.scores.get(0).score}"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                app:layout_constraintBaseline_toBaselineOf="@+id/score_label"
+                app:layout_constraintStart_toEndOf="@+id/score_label"
+                tools:text="10" />
+
+            <TextView
+                android:id="@+id/score_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/score_divider"
+                app:layout_constraintBaseline_toBaselineOf="@+id/number_of_games"
+                app:layout_constraintStart_toEndOf="@+id/number_of_games" />
+
+            <TextView
+                android:id="@+id/number_of_wins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{`` + matchWithScores.scores.get(1).score}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/score_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/score_divider"
+                tools:text="10" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </layout>

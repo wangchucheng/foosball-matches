@@ -53,9 +53,17 @@ class MatchDetailFragment : Fragment() {
         }
 
         // observe necessary fields in view model
-        matchDetailViewModel.hasError.observe(viewLifecycleOwner) {
+        matchDetailViewModel.hasBlankError.observe(viewLifecycleOwner) {
             if (it) {
-                Toast.makeText(context, "Names and scores can not be black.", Toast.LENGTH_LONG)
+                Toast.makeText(context, "Names and scores can not be blank.", Toast.LENGTH_LONG)
+                    .show()
+                matchDetailViewModel.doneShowingError()
+            }
+        }
+
+        matchDetailViewModel.hasNumberError.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, "Scores must be valid.", Toast.LENGTH_LONG)
                     .show()
                 matchDetailViewModel.doneShowingError()
             }
