@@ -15,7 +15,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,110 +26,150 @@
             android:orientation="vertical"
             tools:context=".ui.matchdetail.MatchDetailFragment">
 
-            <TextView
-                android:id="@+id/first_player_headline"
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/first_player_headline"
-                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
+                android:layout_margin="16dp">
 
-            <TextView
-                android:id="@+id/first_player_name_label"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/first_player_headline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/first_player_headline"
+                        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
+
+                    <TextView
+                        android:id="@+id/first_player_name_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/player_name_label"
+                        android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/first_player_name_edit_text"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:autofillHints="AUTOFILL_HINT_PERSON_NAME"
+                        android:ems="10"
+                        android:hint="@string/first_player_name_hint"
+                        android:inputType="textPersonName"
+                        android:minHeight="48dp"
+                        android:text="@={matchDetailViewModel.firstPlayerScore.player}"
+                        android:textColorHint="#8D6E63" />
+
+                    <TextView
+                        android:id="@+id/first_player_score_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/player_score_label"
+                        android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/first_player_score_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:autofillHints="SCORE"
+                        android:ems="10"
+                        android:hint="@string/first_player_score_hint"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:text="@={matchDetailViewModel.firstPlayerScore.score}"
+                        android:textColorHint="#8D6E63" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/player_name_label"
-                android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+                android:layout_margin="16dp">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/first_player_name_edit_text"
-                android:layout_width="match_parent"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="vertical">
 
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:autofillHints="AUTOFILL_HINT_PERSON_NAME"
-                android:ems="10"
-                android:hint="@string/first_player_name_hint"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:text="@={matchDetailViewModel.firstPlayerScore.player}"
-                android:textColorHint="#8D6E63" />
+                    <TextView
+                        android:id="@+id/second_player_headline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/second_player_headline"
+                        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
 
-            <TextView
-                android:id="@+id/first_player_score_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/player_score_label"
-                android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+                    <TextView
+                        android:id="@+id/second_player_name_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/player_name_label"
+                        android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/first_player_score_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:autofillHints="SCORE"
-                android:ems="10"
-                android:hint="@string/first_player_score_hint"
-                android:inputType="number"
-                android:minHeight="48dp"
-                android:text="@={matchDetailViewModel.firstPlayerScore.score}"
-                android:textColorHint="#8D6E63" />
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/second_player_name_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:autofillHints="AUTOFILL_HINT_PERSON_NAME"
+                        android:ems="10"
+                        android:hint="@string/second_player_name_hint"
+                        android:inputType="textPersonName"
+                        android:minHeight="48dp"
+                        android:text="@={matchDetailViewModel.secondPlayerScore.player}"
+                        android:textColorHint="#8D6E63" />
 
-            <TextView
-                android:id="@+id/second_player_headline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/second_player_headline"
-                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
+                    <TextView
+                        android:id="@+id/second_player_score_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/player_score_label"
+                        android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
-            <TextView
-                android:id="@+id/second_player_name_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/player_name_label"
-                android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/second_player_score_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:autofillHints="SCORE"
+                        android:ems="10"
+                        android:hint="@string/second_player_score_hint"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:text="@={matchDetailViewModel.secondPlayerScore.score}"
+                        android:textColorHint="#8D6E63" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/second_player_name_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:autofillHints="AUTOFILL_HINT_PERSON_NAME"
-                android:ems="10"
-                android:hint="@string/second_player_name_hint"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:text="@={matchDetailViewModel.secondPlayerScore.player}"
-                android:textColorHint="#8D6E63" />
+            </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/second_player_score_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/player_score_label"
-                android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/second_player_score_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:autofillHints="SCORE"
-                android:ems="10"
-                android:hint="@string/second_player_score_hint"
-                android:inputType="number"
-                android:minHeight="48dp"
-                android:text="@={matchDetailViewModel.secondPlayerScore.score}"
-                android:textColorHint="#8D6E63" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp">
 
                 <Button
                     android:id="@+id/save_button"

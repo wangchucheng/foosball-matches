@@ -31,4 +31,5 @@
     <string name="sharing_not_available">Sharing text is not available</string>
     <string name="share_fab_text">Share</string>
     <string name="share_fab_description">share a new match</string>
+    <string name="score_label_text">Score: </string>
 </resources>
